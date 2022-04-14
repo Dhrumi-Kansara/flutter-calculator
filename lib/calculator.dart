@@ -29,7 +29,7 @@ class _CalculatorState extends State<Calculator> {
     '2',
     '1',
     '+',
-    
+
     '0',
     '.',
     'ANS',
@@ -37,7 +37,7 @@ class _CalculatorState extends State<Calculator> {
   ];
 
   bool isOperatior(String str) {
-    if (['%', '/', 'x', '-', '+', '='].contains(str)) {
+    if (['%', '/', 'X', '-', '+', '='].contains(str)) {
       return true;
     }
     return false;
