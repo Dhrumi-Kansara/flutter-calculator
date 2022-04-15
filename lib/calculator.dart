@@ -42,24 +42,6 @@ class _CalculatorState extends State<Calculator> {
     return false;
   }
 
-  void onClear() {
-    setState(() {
-      userQuestion="";
-    });
-  }
-
-    void onDelete() {
-    setState(() {
-      userQuestion=userQuestion.substring(0, userQuestion.length-1);
-    });
-  }
-
-  void onAdd(String str) {
-    setState(() {
-      userQuestion=userQuestion+str;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -108,30 +90,41 @@ class _CalculatorState extends State<Calculator> {
                   Color? btnColor = Colors.deepPurple[50];
                   Color textColor = Colors.deepPurple;
 
-                  
+                  VoidCallback onPressed = () {};
 
                   if (buttons[index] == "C") {
-
                     btnColor = Colors.green;
                     textColor = Colors.white;
 
                   } else if (buttons[index] == "DEL") {
-
                     btnColor = Colors.red;
                     textColor = Colors.white;
-
+ 
                   } else if (isOperatior(buttons[index])) {
-
                     btnColor = Colors.deepPurple;
                     textColor = Colors.white;
-
                   }
 
-                  return MyButton( 
+                  return MyButton(
                     color: btnColor!,
                     textColor: textColor,
                     buttonText: buttons[index],
-                    buttonTapped: (){},
+                    buttonTapped: () {
+                      if (buttons[index] == "C") {
+                        setState(() {
+                          userQuestion = "";
+                        });
+                      } else if (buttons[index] == "DEL") {
+                        setState(() {
+                          userQuestion = userQuestion.substring(
+                              0, userQuestion.length - 1);
+                        });
+                      } else {
+                        setState(() {
+                          userQuestion = userQuestion + buttons[index];
+                        });
+                      }
+                    },
                   );
                 },
               ),
