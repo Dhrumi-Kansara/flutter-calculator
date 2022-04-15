@@ -1,7 +1,8 @@
 /* calculator 5:0 */
+import 'package:calculator/build_landscape.dart';
 
+import './build_potrait.dart';
 import 'package:flutter/material.dart';
-import './calculator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,10 +17,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData( 
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Calculator(),
+      home: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.deepPurple[100],
+          body: OrientationBuilder(
+            builder: (context, orientation) =>
+              orientation == Orientation.portrait
+                  ? BuildPotrait()
+                  : BuildLandscape()
+            ,
+          ),
+        ),
+      ),
     );
   }
-} 
+}
