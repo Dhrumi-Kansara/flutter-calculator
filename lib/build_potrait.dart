@@ -84,6 +84,11 @@ class _BuildPotraitState extends State<BuildPotrait> {
                         userAnswer = answer;
                       });
                     } else {
+                      if (buttons[index] == 'C') {
+                        setState(() {
+                          userAnswer = "";
+                        });
+                      }
                       String question = cal.onPressend(
                           index: index,
                           buttons: buttons,
